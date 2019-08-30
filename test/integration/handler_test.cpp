@@ -23,6 +23,11 @@ TEST_F(HandlerTest, NoEndOfMapFlow) {
                                 ErrorMsg::END_OF_MAP_FLOW);
 }
 
+TEST_F(HandlerTest, NoEndOfJsonFlow) {
+  EXPECT_THROW_PARSER_EXCEPTION(IgnoreParse("[:"),
+                                ErrorMsg::END_OF_MAP_FLOW);
+}
+
 TEST_F(HandlerTest, PlainScalarStartingWithQuestionMark) {
   EXPECT_CALL(handler, OnDocumentStart(_));
   EXPECT_CALL(handler, OnMapStart(_, "?", 0, EmitterStyle::Block));
